@@ -1,0 +1,19 @@
+{
+  "name": "jumon",
+  "version": "1.0.0",
+  "description": "JUst html element MONitor",
+  "main": "lib/jumon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dom",
+    "library"
+  ],
+  "author": {
+    "name": "Hiromichi Matsushima",
+    "email": "hylom@hylom.net",
+    "url": "https://hylom.net/"
+  },
+  "license": "MIT"
+}

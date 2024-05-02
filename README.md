@@ -36,7 +36,7 @@ parameter.height = 200;
 
 ### `jumon-bind="propertyName"`
 
-Bind the element's value to Jumon instance's `.propertyName` property.
+Bind the element's value to Jumon instance's `.{propertyName}` property.
 
 Example:
 
@@ -80,7 +80,7 @@ Example:
 
 ```
 <input class="ratio" value="100" jumon-bind-to="#frame[height]">
-<iframe src="https://example.com/" height="0"></iframe>
+<iframe id="frame" src="https://example.com/" height="0"></iframe>
 ```
 
 ### `jumon-bind-to="converter:selector[attribute]"`
@@ -91,12 +91,12 @@ Example:
 
 ```
 <input class="ratio" value="100" jumon-bind-to="calcSize:#frame[height]">
-<iframe src="https://example.com/" height="0"></iframe>
+<iframe id="frame" src="https://example.com/" height="0"></iframe>
 ```
 
 ```
 parameter = new Jumon();
-parameter.calcSize(val => val * 2); // set the iframe's height to twice the value
+parameter.calcSize = val => val * 2; // set the iframe's height to twice the value
 ```
 
 
@@ -134,7 +134,7 @@ Example:
 
 ```
 parameter = new Jumon();
-parameter.update = (event) {
+parameter.update = function (event) {
   // When the button is clicked, this method is invoked.
 };
 ```

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mocha Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
+    <script src="https://www.chaijs.com/chai.js"></script>
+    <script src="https://unpkg.com/mocha/mocha.js"></script>
+  </head>
+  <body>
+
+    <form id="jumon-test-form01" style="display:none;">
+      <input id="j-form01-width" value="50"
+             jumon-bind-to="#j-form01-test01[maxlength]"
+             jumon-bind="width"
+             jumon-type="Number">
+      <input value="100"
+             jumon-bind="height"
+             jumon-bind-to="twice:#j-form01-test02[maxlength]"
+             >
+      <input id="j-form01-test01" value="test" maxlength="1">
+      <input id="j-form01-test02" value="test" maxlength="200">
+      <button type="button" id="j-form01-btn01"
+              jumon-listen="click:update">update</button>
+    </form>
+    
+    <div id="mocha"></div>
+    <script class="mocha-init">
+      mocha.setup('bdd');
+      mocha.checkLeaks();
+      const should = chai.should();
+    </script>
+    <script type="module" src="./jumon.test.js"></script>
+    <script class="mocha-exec">
+      document.addEventListener("DOMContentLoaded", () => {
+        mocha.run();
+      });
+    </script>
+  </body>
+</html>

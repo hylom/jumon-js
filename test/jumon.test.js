@@ -109,14 +109,16 @@ describe("Jumon", function () {
     });
     it("can create blank array with template", function () {
       testForm01.should.have.property("items3").and.lengthOf(0);
-      testForm01.items3.push({ title: "foo"});
+      });
+    it("can support element insertion with unshift", function () {
+      testForm01.items3.unshift({ title: "foo"});
       testForm01.should.have.property("items3").and.lengthOf(1);
       testForm01.items3[0].should.deep.equal({ title: "foo" });
       //testForm01.should.have.nested.property("items3[0].title", "foo");
       document.getElementById("j-form01-ul3").children[0]
         .tagName.should.equal("LI");
       });
-    it("can support element insertion", function () {
+    it("can support element insertion with push", function () {
       testForm01.items2.push({ title: "C" });
       testForm01.should.have.property("items2").and.lengthOf(3);
       testForm01.items2[2].should.deep.equal({ title: "C" });
@@ -132,10 +134,10 @@ describe("Jumon", function () {
       testForm01.items2.pop();
       testForm01.should.have.property("items2").and.lengthOf(0);
       testForm01.items2.push({ title: "X" });
-      testForm01.items2.push({ title: "Y" });
+      testForm01.items2.unshift({ title: "Y" });
       testForm01.should.have.property("items2").and.lengthOf(2);
-      testForm01.items2[0].should.deep.equal({ title: "X" });
-      testForm01.items2[1].should.deep.equal({ title: "Y" });
+      testForm01.items2[0].should.deep.equal({ title: "Y" });
+      testForm01.items2[1].should.deep.equal({ title: "X" });
       /*
       testForm01.should.have.nested.property("items2[0].title", "X");
       testForm01.should.have.nested.property("items2[1].title", "Y");

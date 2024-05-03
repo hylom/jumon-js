@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
     <script src="https://www.chaijs.com/chai.js"></script>
     <script src="https://unpkg.com/mocha/mocha.js"></script>
+    <style>
+      .hidden { display:none; }
+      [jumon-foreach] { background: yellow; }
+    </style>
   </head>
   <body>
 
-    <form id="jumon-test-form01" style="display:none;">
+    <form id="jumon-test-form01" class="hidden">
       <input id="j-form01-width" value="50"
              jumon-bind-to="#j-form01-test01[maxlength]"
              jumon-bind="width"
@@ -18,11 +22,48 @@
       <input value="100"
              jumon-bind="height"
              jumon-bind-to="twice:#j-form01-test02[maxlength]"
-             >
-      <input id="j-form01-test01" value="test" maxlength="1">
+             jumon-type="Number">
+      <input id="j-form01-test01" value="123" maxlength="1"
+             jumon-bind="name">
       <input id="j-form01-test02" value="test" maxlength="200">
       <button type="button" id="j-form01-btn01"
-              jumon-listen="click:update">update</button>
+              jumon-listen="click:setWidth222">button01</button>
+      <button type="button" id="j-form01-btn02"
+              jumon-listener="click:setWidth222">button02</button>
+      <button type="button" id="j-form01-btn03"
+              jumon-listener="click:setWidth(333)">button03</button>
+      <button type="button" id="j-form01-btn04"
+              jumon-listener="click:setHeight(event, 444)">button04</button>
+      <div jumon-text="text01">T_E_S_T</div>
+      <div jumon-text="text02" jumon-type="Number">T_E_S_T_0_2</div>
+      <div jumon-text="text03" jumon-type="Number">100</div>
+
+      <ul>
+        <li jumon-foreach="items" jumon-text="title">item1</li>
+        <li jumon-foreach="items" jumon-text="title">item2</li>
+        <li jumon-foreach="items" jumon-text="title">item3</li>
+      </ul>
+
+      <ul>
+        <li jumon-foreach="items2">item<span jumon-text="title">A</span></li>
+        <li jumon-foreach="items2">item<span jumon-text="title">B</span></li>
+      </ul>
+
+      <ul id="j-form01-ul3">
+        <template jumon-foreach="items3">
+          <li>item-<span jumon-text="title">AAA</span></li>
+        </template>
+      </ul>
+
+      <div id="j-form01-ext1">
+        <template jumon-placeholder="ext1"></template>
+      </div>
+    </form>
+
+    <form id="jumon-test-form02" class="hidden">
+      <input id="j-form02-value" value="50"
+             jumon-bind="value"
+             jumon-type="Number">
     </form>
     
     <div id="mocha"></div>

@@ -92,20 +92,11 @@ describe("Jumon", function () {
       testForm01.items[0].should.deep.equal({ title: "item1" });
       testForm01.items[1].should.deep.equal({ title: "item2" });
       testForm01.items[2].should.deep.equal({ title: "item3" });
-      /*
-      testForm01.should.have.nested.property("items[0].title", "item1");
-      testForm01.should.have.nested.property("items[1].title", "item2");
-      testForm01.should.have.nested.property("items[2].title", "item3");
-      */
     });
     it("can create array of elements with nested element", function () {
       testForm01.should.have.property("items2").and.lengthOf(2);
       testForm01.items2[0].should.deep.equal({ title: "A" });
       testForm01.items2[1].should.deep.equal({ title: "B" });
-      /*
-      testForm01.should.have.nested.property("items2[0].title", "A");
-      testForm01.should.have.nested.property("items2[1].title", "B");
-      */
     });
     it("can create blank array with template", function () {
       testForm01.should.have.property("items3").and.lengthOf(0);
@@ -114,7 +105,6 @@ describe("Jumon", function () {
       testForm01.items3.unshift({ title: "foo"});
       testForm01.should.have.property("items3").and.lengthOf(1);
       testForm01.items3[0].should.deep.equal({ title: "foo" });
-      //testForm01.should.have.nested.property("items3[0].title", "foo");
       document.getElementById("j-form01-ul3").children[0]
         .tagName.should.equal("LI");
       });
@@ -122,7 +112,6 @@ describe("Jumon", function () {
       testForm01.items2.push({ title: "C" });
       testForm01.should.have.property("items2").and.lengthOf(3);
       testForm01.items2[2].should.deep.equal({ title: "C" });
-      //testForm01.should.have.nested.property("items2[2].title", "C");
       });
     it("can support element deletion", function () {
       const p = testForm01.items2.pop();
@@ -138,10 +127,6 @@ describe("Jumon", function () {
       testForm01.should.have.property("items2").and.lengthOf(2);
       testForm01.items2[0].should.deep.equal({ title: "Y" });
       testForm01.items2[1].should.deep.equal({ title: "X" });
-      /*
-      testForm01.should.have.nested.property("items2[0].title", "X");
-      testForm01.should.have.nested.property("items2[1].title", "Y");
-      */
     });
   });
 
@@ -175,7 +160,6 @@ describe("Jumon", function () {
       testForm01.ext1.text = "hoge";
       testForm01.should.have.property("ext1");
       testForm01.ext1.should.deep.equal({ text: "hoge" });
-      //testForm01.ext1.should.have.property("text", "hoge");
       document.getElementById("j-form01-ext1")
         .children[0].textContent.should.equal("hoge");
     });

@@ -8,7 +8,7 @@
     <script src="https://www.chaijs.com/chai.js"></script>
     <script src="https://unpkg.com/mocha/mocha.js"></script>
     <style>
-      .hidden { display:none; }
+      .hidde { display:none; }
       [jumon-foreach] { background: yellow; }
     </style>
   </head>
@@ -64,6 +64,11 @@
       <input id="j-form02-value" value="50"
              jumon-bind="value"
              jumon-type="Number">
+      <ul id="j-form02-ul">
+        <template jumon-foreach="text in items">
+          <li jumon-text="text"></li>
+        </template>
+      </ul>
     </form>
     
     <div id="mocha"></div>

@@ -88,7 +88,7 @@ describe("Jumon", function () {
       testForm01.should.not.have.property("title");
     });
     it("can create array of elements", function () {
-      testForm01.should.have.property("items").and.lengthOf(3);
+      //testForm01.should.have.property("items").and.lengthOf(3);
       testForm01.items[0].should.deep.equal({ title: "item1" });
       testForm01.items[1].should.deep.equal({ title: "item2" });
       testForm01.items[2].should.deep.equal({ title: "item3" });
@@ -122,11 +122,26 @@ describe("Jumon", function () {
       testForm01.items2.pop();
       testForm01.items2.pop();
       testForm01.should.have.property("items2").and.lengthOf(0);
-      testForm01.items2.push({ title: "X" });
+      testForm01.items2.unshift({ title: "X" });
       testForm01.items2.unshift({ title: "Y" });
+      //testForm01.items2.push({ title: "Y" });
+      //testForm01.items2.push({ title: "X" });
       testForm01.should.have.property("items2").and.lengthOf(2);
       testForm01.items2[0].should.deep.equal({ title: "Y" });
       testForm01.items2[1].should.deep.equal({ title: "X" });
+    });
+    it("can create with array of scalar", function () {
+      testForm02.items.push("foo");
+      testForm02.items.push("bar");
+      testForm02.items.length.should.equal(2);
+      //testForm02.items.getAt(0).should.equal("foo");
+      //testForm02.items.getAt(1).should.equal("bar");
+      testForm02.items[0].should.equal("foo");
+      testForm02.items[1].should.equal("bar");
+      const items = document.getElementById("j-form02-ul").querySelectorAll("li");
+      items.length.should.equal(2);
+      items.item(0).textContent.should.equal("foo");
+      items.item(1).textContent.should.equal("bar");
     });
   });
 

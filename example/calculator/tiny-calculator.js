@@ -27,52 +27,51 @@ const template = `
 </div>
 `;
 
-const args = {
-  connected() {},
-  props: {},
-  data: {
-    _isEntered: false,
-    _lastValue: 0,
-  },
-  methods: {
-    clickNumber(num) {
-      if (this._isEntered) {
-        this.currentValue = num;
-        this._isEntered = false;
-      } else {
-        this.currentValue = this.currentValue * 10 + num;
-      }
-    },
-    clickOperation(operation) {
-      if (!this._isEntered && this.operation) {
-        this.run();
-      } else {
-        this._isEntered = true;
-        this._lastValue = this.currentValue;
-      }
-      this.operation = operation;
-    },
-    allClear() {
-      this.operation = "";
-      this.currentValue = 0;
-      this._lastValue = 0;
+class TinyCalculator extends HTMLElement {
+  constructor() {
+    super();
+    this._isEntered = false;
+    this._lastValue = 0;
+  }
+  connected() {}
+  clickNumber(num) {
+    if (this._isEntered) {
+      this.currentValue = num;
       this._isEntered = false;
-    },
-    run() {
-      if (this.operation == "+") {
-        this.currentValue += this._lastValue;
-      } else if (this.operation == "-") {
-        this.currentValue -= this._lastValue;
-      } else if (this.operation == "*") {
-        this.currentValue *= this._lastValue;
-      } else if (this.operation == "/") {
-        this.currentValue /= this._lastValue;
-      }
+    } else {
+      this.currentValue = this.currentValue * 10 + num;
+    }
+  }
+  clickOperation(operation) {
+    if (!this._isEntered && this.operation) {
+      this.run();
+    } else {
       this._isEntered = true;
       this._lastValue = this.currentValue;
-      this.operation = "";
-    },
-  },
+    }
+    this.operation = operation;
+  }
+  allClear() {
+    this.operation = "";
+    this.currentValue = 0;
+    this._lastValue = 0;
+    this._isEntered = false;
+  }
+  run() {
+    if (this.operation == "+") {
+      this.currentValue += this._lastValue;
+    } else if (this.operation == "-") {
+      this.currentValue -= this._lastValue;
+    } else if (this.operation == "*") {
+      this.currentValue *= this._lastValue;
+    } else if (this.operation == "/") {
+      this.currentValue /= this._lastValue;
+    }
+    this._isEntered = true;
+    this._lastValue = this.currentValue;
+    this.operation = "";
+  }
 }
 
-makeComponent("tiny-calculator", template, args);
+makeComponent("tiny-calculator", template, { baseClass: TinyCalculator });
+

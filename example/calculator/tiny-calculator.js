@@ -96,15 +96,16 @@ class TinyCalculator extends HTMLElement {
     }
   }
   setOperation(operation) {
+    if (!this.operation) {
+      this._stack.push(this.currentValue);
+    }
     if (!this._isEntered) {
       this._isEntered = true;
       this._lastValue = this.currentValue;
-      this._stack.push(this.currentValue);
+      //this._stack.push(this.currentValue);
       if (this.operation) {
         this.run(true);
       }
-    } else if (!this.operation) {
-      this._stack.push(this.currentValue);
     }
     this.operation = operation;
   }
@@ -130,13 +131,13 @@ class TinyCalculator extends HTMLElement {
     if (!cont) {
       this._stack.push("=");
       this._stack.push(this.currentValue);
-      console.log(this._stack.join("  "));
       this.histories.push(this._stack.join(" "));
       this._stack = [];
     }
     this._isEntered = true;
     this._lastValue = this.currentValue;
     this.operation = "";
+    console.log(this._stack.join("  "));
   }
   clearHistory() {
     this.histories.splice(0, this.histories.length);

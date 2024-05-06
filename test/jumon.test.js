@@ -143,6 +143,16 @@ describe("Jumon", function () {
       items.item(0).textContent.should.equal("foo");
       items.item(1).textContent.should.equal("bar");
     });
+    it("can update array with splice", function () {
+      testForm02.items.splice(1, 1, "hoge").should.deep.equal(["bar"]);
+      testForm02.items.should.be.lengthOf(2);
+      testForm02.items[0].should.equal("foo");
+      testForm02.items[1].should.equal("hoge");
+      const items = document.getElementById("j-form02-ul").querySelectorAll("li");
+      items.should.be.lengthOf(2);
+      items.item(0).textContent.should.equal("foo");
+      items.item(1).textContent.should.equal("hoge");
+    });
   });
 
   describe("jumon-listen", function () {
